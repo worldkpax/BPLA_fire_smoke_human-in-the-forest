@@ -12,7 +12,7 @@
 
 | Подсистема         | Что делает                                                                                               | Модуль                       |
 | ------------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **Detection**      | YOLOv8 → `Detection`‑объекты (`class_id`, `confidence`, `bbox`)                                          | `fire_uav/core/detection.py` |
+| **Detection**      | YOLOv10 → `Detection`‑объекты (`class_id`, `confidence`, `bbox`)                                          | `fire_uav/core/detection.py` |
 | **Flight Planner** | Генерирует грид‑линии, оптимизирует порядок точек (TSP), делит маршрут на миссии по ёмкости аккумулятора | `fire_uav/flight/planner.py` |
 | **Recorder**       | Сохраняет кадры (`jpg`) и пакеты детекций (`json`/`json.gz`)                                             | `fire_uav/io/recorder.py`    |
 | **Transmitter**    | Отправляет JSON‑данные по TCP/UDP                                                                        | `fire_uav/io/transmitter.py` |
