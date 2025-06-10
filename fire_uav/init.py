@@ -1,6 +1,5 @@
 """
-fire_uav – UAV toolkit for forest-fire detection & autonomous survey.
-
+fire_uav – UAV toolkit: fire/smoke detection + flight-planner.
 """
 from .core.geometry import haversine_m, offset_latlon
 from .core.camera import CameraParams

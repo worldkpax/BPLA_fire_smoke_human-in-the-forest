@@ -1,19 +1,18 @@
 """
-Простейший PyQt5 GUI: показывает камеру + bbox-ы.
-Фокус проекта не GUI, но есть рабочий пример.
+Простейший PyQt5 GUI: показывает bbox-ы поверх веб-камеры.
+Запуск:
+    python -m fire_uav gui
+               └── из __main__.py вызывает этот файл
 """
 from __future__ import annotations
 import sys
-from pathlib import Path
-
 import cv2
-import numpy as np
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow
 
-from ...core.detection import DetectionEngine
-from ...utils.logging import setup_logging
+from fire_uav.core.detection import DetectionEngine
+from fire_uav.utils.logging import setup_logging
 
 
 class MainWindow(QMainWindow):
@@ -53,7 +52,3 @@ def main():
     wnd.resize(960, 720)
     wnd.show()
     sys.exit(app.exec_())
-
-
-if __name__ == "__main__":
-    main()

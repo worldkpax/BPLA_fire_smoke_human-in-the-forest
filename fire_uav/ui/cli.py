@@ -16,6 +16,7 @@ from ..io.recorder import Recorder
 from ..utils.logging import setup_logging
 from ..flight.planner import FlightPlanner, GridParams, CameraSpec
 from ..flight.energy import EnergyModel
+from fire_uav.flight.converter import dump_qgc
 
 
 # ---------------------------------------------------------------------- #
@@ -75,8 +76,9 @@ def cmd_plan(argv: list[str]) -> None:
     missions = planner.generate()
 
     out = Path(args.out)
-    out.write_text("\n".join(f"{wp.lat},{wp.lon},{wp.alt}" for wp in missions[0]), encoding="utf-8")
-    print(f"Waypoints saved to {out}")
+    missions = planner.generate()
+    dump_qgc(missions, args.out)  # <-- вместо .write_text(...)
+    print(f"QGroundControl plan saved to {args.out}")
 
 
 # ---------------------------------------------------------------------- #

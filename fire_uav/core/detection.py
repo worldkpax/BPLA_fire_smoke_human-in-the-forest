@@ -1,13 +1,14 @@
 """
-YOLOv8 обёртка ➜ Detection objects.
+YOLOv8 wrapper  ·  + class-filter  ·  + auto-GPU  ·  + runtime conf update
 """
 from __future__ import annotations
-
 import logging
 from pathlib import Path
-from typing import List
+from typing import List, Sequence
 
 import numpy as np
+import torch
+from fire_uav.config.settings import settings  # ← новая pydantic-конфигурация
 
 from .camera import CameraParams
 from .schema import Detection, FrameMeta, DetectionsBatch
@@ -18,27 +19,42 @@ _log = logging.getLogger(__name__)
 class DetectionEngine:
     def __init__(
         self,
-        model_path: str | Path,
+        model_path: str | Path | None = None,
         *,
-        conf_threshold: float = 0.4,
-        iou_threshold: float = 0.5,
+        wanted_classes: Sequence[int] | None = None,
+        conf_threshold: float | None = None,
+        iou_threshold: float | None = None,
         device: str | None = None,
     ) -> None:
         try:
             from ultralytics import YOLO
-        except ImportError as err:  # pragma: no cover
+        except ImportError as err:
             raise RuntimeError("Install `ultralytics` to use DetectionEngine") from err
 
-        self._yolo = YOLO(str(model_path))
-        self._yolo.overrides["conf"] = conf_threshold
-        self._yolo.overrides["iou"] = iou_threshold
-        if device:
-            self._yolo.to(device)
-        _log.info("YOLO model %s loaded", model_path)
+        model_path = model_path or settings.yolo_model
+        conf_threshold = conf_threshold or settings.yolo_conf
+        iou_threshold = iou_threshold or settings.yolo_iou
 
-    # ------------------------------------------------------------------ #
-    # Public API
-    # ------------------------------------------------------------------ #
+        # auto-gpu
+        device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+
+        self._yolo = YOLO(str(model_path))
+        self._yolo.overrides |= {
+            "conf": conf_threshold,
+            "iou": iou_threshold,
+            "device": device,
+        }
+        self._wanted = set(wanted_classes or settings.yolo_classes)
+
+        _log.info(
+            "YOLO %s loaded (device=%s, conf=%.2f, classes=%s)",
+            model_path,
+            device,
+            conf_threshold,
+            sorted(self._wanted) if self._wanted else "ALL",
+        )
+
+    # ────────────────────────────────────────────────────────────────── #
     def infer(
         self,
         frame_bgr: np.ndarray,
@@ -47,13 +63,14 @@ class DetectionEngine:
         cam_params: CameraParams | None = None,
         return_batch: bool = False,
     ) -> List[Detection] | DetectionsBatch:
-        """Run detector → Detection list **или** DetectionsBatch."""
         h, w = frame_bgr.shape[:2]
-        res = self._yolo(frame_bgr, verbose=False)
+        results = self._yolo(frame_bgr, verbose=False)
 
         detections: list[Detection] = []
-        for r in res:  # YOLO может вернуть батч, но у нас 1 кадр
+        for r in results:
             for cls, conf, xyxy in zip(r.boxes.cls, r.boxes.conf, r.boxes.xyxy):
+                if self._wanted and int(cls) not in self._wanted:
+                    continue
                 x1, y1, x2, y2 = map(int, xyxy)
                 detections.append(
                     Detection(
@@ -64,12 +81,9 @@ class DetectionEngine:
                     )
                 )
 
-        _log.debug("Frame %s -> %d dets", camera_id, len(detections))
-
         if return_batch:
-            batch = DetectionsBatch(
+            return DetectionsBatch(
                 frame=FrameMeta(camera_id=camera_id, width=w, height=h),
                 detections=detections,
             )
-            return batch
         return detections
