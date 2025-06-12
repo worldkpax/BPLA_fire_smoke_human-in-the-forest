@@ -1,0 +1,8 @@
+{
+  "map_center": [56.02, 92.90],
+  "gsd_cm": 3,
+  "side_overlap": 0.7,
+  "front_overlap": 0.8,
+  "battery_wh": 4500,
+  "no_fly_geojson": "data/no_fly_zones.geojson"
+}

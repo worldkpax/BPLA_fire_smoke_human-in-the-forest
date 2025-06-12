@@ -1,22 +1,26 @@
-# ── Core ────────────────────────────────────────────────────────────
-ultralytics>=8.3.0      # YOLO v11 поддерживается в том же пакете
-torch>=2.2              # поставьте cuXX-билд вручную для GPU
+# ───────────── Core ────────────────────────────────
+ultralytics>=8.3.0      # YOLOv11 (detector)
+torch>=2.2              # choose CUDA-enabled build for GPU
 
-# ── Geometry & Planning ────────────────────────────────────────────
-shapely>=2.0
-ortools>=9.7
+# ────────── Geometry & Planning ────────────────────
+shapely>=2.0            # geometry ops
+ortools>=9.7           # grid & optimisation
 
-# ── Data & Config ──────────────────────────────────────────────────
-numpy>=1.26
-pydantic-settings>=2.2
-PyYAML>=6.0
+# ─────────── Data & Config ─────────────────────────
+numpy>=1.26            # math backbone
+pydantic-settings>=2.2 # typed runtime configs
+PyYAML>=6.0            # *.yaml settings
 
-# ── Image / Video ──────────────────────────────────────────────────
-opencv-python>=4.10
+# ────────── Image / Video ──────────────────────────
+opencv-python>=4.10    # frames in/out, codecs
 
-# ── GUI (optional) ─────────────────────────────────────────────────
-PyQt5>=5.15
-PyQt5-stubs>=5.15        # убирает IDE-ворнинги
+# ──────────── GUI (optional) ───────────────────────
+PyQt5>=5.15            # widgets & main window
+PyQt5-stubs>=5.15      # typing for IDEs
+PyQtWebEngine>=5.15    # embedded map view
+folium>=0.15           # leaflet map generator
+pyproj>=3              # CRS transforms
+pyqtgraph>=0.13        # live plots (future)
 
-# ── Dev / CI ───────────────────────────────────────────────────────
-pytest>=8.2              # тесты
+# ───────────── Dev / CI ────────────────────────────
+pytest>=8.2            # tests & CI

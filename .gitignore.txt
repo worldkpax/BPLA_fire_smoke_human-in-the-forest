@@ -21,3 +21,4 @@ __pycache__/
 # Исключение данных среды
 .env
 *.env
+artifacts/
