@@ -1,0 +1,78 @@
+21:22:12 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000012F82A2ED40>
+21:22:12 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000012FE19BB7E0>
+21:22:12 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x0000012F8A374B80>>
+21:38:11 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000190278AF600>
+21:38:11 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000190279480E0>
+21:38:11 DEBUG    DetectThread: enter run()
+21:38:11 INFO           detect: Detector thread started
+21:38:11 ERROR    DetectThread: Unhandled exception: '_DummyEngine' object has no attribute 'detect'
+Traceback (most recent call last):
+  File "C:\Users\world\Downloads\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\services\components\base.py", line 58, in run
+    self.loop()
+  File "C:\Users\world\Downloads\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\services\components\detect.py", line 67, in loop
+    batch = self._engine.detect(frame)
+            ^^^^^^^^^^^^^^^^^^^
+AttributeError: '_DummyEngine' object has no attribute 'detect'
+
+21:38:11 DEBUG    DetectThread: leave run() -> ERROR
+21:38:12 DEBUG         asyncio: Using proactor: IocpProactor
+21:38:12 INFO            httpx: HTTP Request: GET http://testserver/metrics "HTTP/1.1 200 OK"
+21:38:49 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000162BC20B6A0>
+21:38:49 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000162BC63BCE0>
+21:38:49 DEBUG    DetectThread: enter run()
+21:38:49 INFO           detect: Detector thread started
+21:38:49 ERROR    DetectThread: Unhandled exception: '_DummyEngine' object has no attribute 'detect'
+Traceback (most recent call last):
+  File "C:\Users\world\Downloads\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\services\components\base.py", line 58, in run
+    self.loop()
+  File "C:\Users\world\Downloads\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\services\components\detect.py", line 67, in loop
+    batch = self._engine.detect(frame)
+            ^^^^^^^^^^^^^^^^^^^
+AttributeError: '_DummyEngine' object has no attribute 'detect'
+
+21:38:49 DEBUG    DetectThread: leave run() -> ERROR
+21:38:50 DEBUG         asyncio: Using proactor: IocpProactor
+21:38:50 INFO            httpx: HTTP Request: GET http://testserver/metrics "HTTP/1.1 200 OK"
+21:41:51 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000026DD749F600>
+21:41:51 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000026DD78D3C40>
+21:41:51 DEBUG    DetectThread: enter run()
+21:41:51 INFO           detect: Detector thread started
+21:41:51 DEBUG             bus: EMIT  detection     dict
+21:41:51 INFO           detect: Detector thread stopped
+21:41:51 DEBUG    DetectThread: leave run() -> STOPPED
+21:41:51 DEBUG    DetectThread: Joined (clean)
+21:41:51 DEBUG         asyncio: Using proactor: IocpProactor
+21:41:51 INFO            httpx: HTTP Request: GET http://testserver/metrics "HTTP/1.1 200 OK"
+21:54:27 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000002101356B6A0>
+21:54:27 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000021014973CE0>
+21:54:27 DEBUG    DetectThread: enter run()
+21:54:27 INFO           detect: Detector thread started
+21:54:27 DEBUG             bus: EMIT  detection     dict
+21:54:27 INFO           detect: Detector thread stopped
+21:54:27 DEBUG    DetectThread: leave run() -> STOPPED
+21:54:27 DEBUG    DetectThread: Joined (clean)
+21:54:27 DEBUG         asyncio: Using proactor: IocpProactor
+21:54:27 INFO            httpx: HTTP Request: GET http://testserver/metrics "HTTP/1.1 200 OK"
+22:01:42 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001F24FBB2DE0>
+22:01:42 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001F254F7E200>
+22:01:42 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000001F2574D6C20>>
+22:02:55 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000027881812DE0>
+22:02:55 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000027886C6E200>
+22:02:55 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000002788924EC20>>
+22:03:22 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000200C96E2DE0>
+22:03:22 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000200CEAAE200>
+22:03:22 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x00000200D1016C20>>
+22:36:23 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001C786CAF2E0>
+22:36:23 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001C78C0660C0>
+22:36:23 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000001C78E53AC20>>
+22:36:48 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000023383222DE0>
+22:36:48 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000023388616200>
+22:36:48 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000002338AB7AB90>>
+23:02:33 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000022196D5EDE0>
+23:02:33 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000002219C122200>
+23:02:33 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000002219E642DD0>>
+23:02:33 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+23:12:00 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001F09E2FEDE0>
+23:12:00 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001F0A36E2200>
+23:12:00 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000001F0A5BD2CB0>>
+23:12:00 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION

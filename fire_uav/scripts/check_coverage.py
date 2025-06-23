@@ -1,27 +1,33 @@
+# mypy: ignore-errors
 #!/usr/bin/env python3
-"""
-Посчитать процент покрытия AOI кадрами по сохранённому mission.plan
-"""
-import json, sys
-from shapely.geometry import shape, Polygon
-from fire_uav.flight.coverage import coverage_percent
+"""CLI-утилита: печатает KPI покрытия маршрута."""
 
-def waypoints_from_plan(path):
-    items = json.load(open(path))["mission"]["items"]
-    from fire_uav.flight.planner import Waypoint
-    return [Waypoint(lat=i["params"][4],
-                     lon=i["params"][5],
-                     alt=i["params"][6]) for i in items]
+from __future__ import annotations
 
-def main(plan, aoi_geojson):
-    aoi = shape(json.load(open(aoi_geojson)))
-    wp = waypoints_from_plan(plan)
-    from fire_uav.flight.planner import CameraSpec
-    swath = CameraSpec().swath_m(wp[0].alt)
-    print(f"Coverage ≈ {coverage_percent(aoi, wp, swath):.1f} %")
+import sys
+from pathlib import Path
+from typing import List
+
+# type: ignore[attr-defined]
+from fire_uav.domain.route.converter import waypoints_from_plan
+from fire_uav.domain.route.coverage import coverage_percent
+from fire_uav.domain.route.planner import Waypoint
+
+
+def _load(plan: Path) -> List[Waypoint]:
+    # helper не типизирован → добавляем ignore
+    return waypoints_from_plan(plan)  # type: ignore[no-any-return]
+
+
+def main(argv: list[str] | None = None) -> None:
+    argv = sys.argv[1:] if argv is None else argv
+    if len(argv) != 1:
+        print("Usage: check_coverage.py <mission.plan>")
+        sys.exit(1)
+
+    waypoints = _load(Path(argv[0]))
+    print(f"Coverage: {coverage_percent(waypoints):.1f}%")  # noqa: T201
+
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("usage: check_coverage.py mission.plan aoi.geojson")
-        sys.exit(1)
-    main(sys.argv[1], sys.argv[2])
+    main()

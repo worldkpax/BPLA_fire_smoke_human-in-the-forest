@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fire-uav"
+version = "0.1.0"
+description = "Fire-smoke-human detection UAV toolkit"
+requires-python = ">=3.10"
+# если есть внешние зависимости – перечислите их здесь
+# dependencies = ["opencv-python", "pydantic", ...]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["fire_uav.tests*", "tests*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+combine_as_imports = true
+known_first_party = ["fire_uav"]
+known_third_party = ["PyQt5", "cv2", "numpy", "pytest"]
+skip = [".venv", "build", "dist"]
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = ["E203", "W503"]          # совместимо с black
+select = ["E", "F", "B", "B950"]
+max-complexity = 10
+exclude = ".venv,build,dist"
+
+[tool.mypy]
+python_version = "3.11"
+plugins = []
+strict = true
+ignore_missing_imports = true             # для C-расширений (cv2, PyQt5)
+files = ["fire_uav"]
+
+[tool.poetry.scripts]
+fire-uav = "fire_uav.main:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2"
+coverage = "^7.5"
+pre-commit = "^3.7"
+shapely = "^2.0"
+colorlog = "^6.8"
+
+[tool.poetry.dependencies]
+fastapi = "^0.111"
+uvicorn = {extras = ["standard"], version = "^0.30"}
+pyqt6-webengine = "^6.9.0"
+folium = "^0.20.0"
+branca = "^0.8.1"
+
+[project.optional-dependencies]
+monitoring = ["prometheus-client>=0.20.0"]

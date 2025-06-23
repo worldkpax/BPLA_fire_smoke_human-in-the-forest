@@ -1,0 +1,56 @@
+"""
+DetectorVM — слой ViewModel для детектора.
+
+• Публикует события APP_START / APP_STOP / CONF_CHANGE через EventBus
+• Принимает пачки детекций, пробрасывает их в GUI:
+    ─ полный batch   → сигнал detection
+    ─ список bbox'ов → сигнал bboxes  (для VideoPane)
+"""
+
+from __future__ import annotations
+
+import logging
+from typing import Any, Final, List, Tuple
+
+from PyQt6.QtCore import QObject, pyqtSignal
+
+from fire_uav.services.bus import Event, bus
+
+_log: Final = logging.getLogger(__name__)
+
+# x1, y1, x2, y2
+BBox = Tuple[int, int, int, int]
+
+
+class DetectorVM(QObject):
+    # -------- публичные сигналы для GUI -------- #
+    detection = pyqtSignal(object)  # весь batch
+    bboxes = pyqtSignal(list)  # List[BBox]
+
+    def __init__(self) -> None:
+        super().__init__()
+        # mypy жалуется на несовпадение типа колбэка — подавляем
+        bus.subscribe(Event.DETECTION, self._on_detection)  # type: ignore[arg-type]
+        _log.info("DetectorVM subscribed to Event.DETECTION")
+
+    def start(self) -> None:
+        """Запустить детектор (подключить EventBus, и т.п.)."""
+        bus.emit(Event.APP_START)
+        _log.debug("APP_START emitted")
+
+    def stop(self) -> None:
+        """Остановить детектор."""
+        bus.emit(Event.APP_STOP)
+        _log.debug("APP_STOP emitted")
+
+    def _on_detection(self, batch: Any) -> None:
+        """Пришёл batch → пробрасываем сигналы наверх."""
+        self.detection.emit(batch)
+
+        # извлекаем bbox'ы из batch.detections
+        bxs: List[BBox] = []
+        for d in getattr(batch, "detections", []):
+            if all(hasattr(d, k) for k in ("x1", "y1", "x2", "y2")):
+                bxs.append((int(d.x1), int(d.y1), int(d.x2), int(d.y2)))
+
+        self.bboxes.emit(bxs)

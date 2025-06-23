@@ -1,26 +1,32 @@
 # ───────────── Core ────────────────────────────────
-ultralytics>=8.3.0      # YOLOv11 (detector)
-torch>=2.2              # choose CUDA-enabled build for GPU
+ultralytics>=8.3.0      # YOLOv11 (detектор)
+torch>=2.2              # CUDA-enabled build при наличии GPU
 
 # ────────── Geometry & Planning ────────────────────
-shapely>=2.0            # geometry ops
-ortools>=9.7           # grid & optimisation
+shapely>=2.0            # геометрия (детект/трекинг)
+ortools>=9.7            # оптимизатор маршрутов
 
 # ─────────── Data & Config ─────────────────────────
-numpy>=1.26            # math backbone
-pydantic-settings>=2.2 # typed runtime configs
-PyYAML>=6.0            # *.yaml settings
+numpy>=1.26             # численные вычисления
+pydantic>=2.0           # валидация/схемы FastAPI
+PyYAML>=6.0             # загрузка *.yaml-конфигов
 
 # ────────── Image / Video ──────────────────────────
-opencv-python>=4.10    # frames in/out, codecs
+opencv-python>=4.10     # чтение/запись кадров
+
+# ──────── REST API & Monitoring ────────────────────
+fastapi>=0.95           # API-сервер
+uvicorn>=0.23           # ASGI-раннер для FastAPI
+prometheus-client>=0.16 # метрики Prometheus
+
+# ───────── HTTP Client ─────────────────────────────
+requests>=2.31          # внешние HTTP-запросы
 
 # ──────────── GUI (optional) ───────────────────────
-PyQt5>=5.15            # widgets & main window
-PyQt5-stubs>=5.15      # typing for IDEs
-PyQtWebEngine>=5.15    # embedded map view
-folium>=0.15           # leaflet map generator
-pyproj>=3              # CRS transforms
-pyqtgraph>=0.13        # live plots (future)
+PyQt6>=6.4              # виджеты и окно
+PyQt6-WebEngine>=6.4    # встроенный браузер (карты)
+PyQt6-stubs>=6.4        # подсказки для IDE
+folium>=0.15            # генерация Leaflet-карт
 
 # ───────────── Dev / CI ────────────────────────────
-pytest>=8.2            # tests & CI
+pytest>=8.2             # тесты & CI

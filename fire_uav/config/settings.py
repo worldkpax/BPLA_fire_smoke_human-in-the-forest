@@ -1,26 +1,42 @@
 """
-Run-time configuration, читаемая из `.env` или перем. окружения FIRE_*.
+Единый объект `settings`, пригодный и для рантайма, и для статического анализа.
 """
-from pydantic_settings import BaseSettings, SettingsConfigDict
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import List
+
+from fire_uav.core.settings_loader import Settings as _SettingsDict, load_settings
 
 
-class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="FIRE_", extra="ignore")
+@dataclass
+class Settings:
+    # ───────── YOLO ─────────
+    yolo_model: str = "yolov11n.pt"
+    yolo_conf: float = 0.25
+    yolo_iou: float = 0.45
+    yolo_classes: List[int] = field(default_factory=lambda: [0, 1, 2])
 
-    # YOLO
-    yolo_model: str = "best_yolo11.pt"
-    yolo_conf: float = 0.40
-    yolo_iou: float = 0.50
-    yolo_classes: list[int] = []  # пусто → все классы
+    # ───────── I/O ──────────
+    output_root: Path = Path("data/outputs")
 
-    # Recorder
-    output_root: str = "./artifacts"
+    # ------------------------ #
 
-    # Flight
-    gsd_target_cm: float = 2.5
-    side_overlap: float = 0.7
-    front_overlap: float = 0.8
-    battery_wh: float = 27.0
+    @classmethod
+    def from_dict(cls, data: _SettingsDict) -> "Settings":
+        """Строим экземпляр из dict (например, из JSON-конфига)."""
+        defaults = cls()
+        return cls(
+            yolo_model=data.get("yolo_model", defaults.yolo_model),
+            yolo_conf=float(data.get("yolo_conf", defaults.yolo_conf)),
+            yolo_iou=float(data.get("yolo_iou", defaults.yolo_iou)),
+            yolo_classes=list(data.get("yolo_classes", defaults.yolo_classes)),
+            output_root=Path(data.get("output_root", defaults.output_root)),
+        )
 
 
-settings = Settings()  # импортируйте и используйте
+settings = Settings.from_dict(load_settings())
+
+__all__ = ["Settings", "settings"]

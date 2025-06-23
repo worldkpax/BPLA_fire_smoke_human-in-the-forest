@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+        exclude: ^docs/
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.0
+    hooks:
+      - id: isort
+# -   repo: https://gitlab.com/pycqa/flake8
+#     rev: 7.0.0
+#     hooks:
+#       - id: flake8
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - "git+https://github.com/python-qt-tools/PyQt6-stubs@main"
+
+default_stages: [commit, push]

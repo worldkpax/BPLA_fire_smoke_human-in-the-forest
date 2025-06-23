@@ -1,9 +1,11 @@
 """
 Pydantic-модели (DTO) — единый формат данных между модулями.
 """
+
 from __future__ import annotations
+
 from datetime import datetime
-from typing import Tuple, List
+from typing import List, Tuple
 
 from pydantic import BaseModel, Field
 
@@ -18,7 +20,7 @@ class Detection(BaseModel):
     camera_id: str
     class_id: int
     confidence: float
-    bbox: Tuple[int, int, int, int]          # x1, y1, x2, y2
+    bbox: Tuple[int, int, int, int]  # x1, y1, x2, y2
     world_coord: WorldCoord | None = None
     relative_angles: Tuple[float, float] | None = None  # az, el
 

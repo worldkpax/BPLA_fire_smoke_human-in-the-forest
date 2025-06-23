@@ -1,17 +1,17 @@
-#!/usr/bin/env python3
-"""
-Заглушка симуляции AirSim ― позже замените вызовом настоящего API.
-"""
-import sys, time
+# fire_uav/sim/airsim_stub.py
+from __future__ import annotations
 
-def main(plan_path: str):
-    print("=== AirSim stub ===")
-    print(f"Would load {plan_path} into AirSim environment…")
-    time.sleep(1)
-    print("✔ done (stub)")
+from typing import Any
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("usage: airsim_stub.py <mission.plan>")
-        sys.exit(1)
-    main(sys.argv[1])
+
+def start(server_addr: str = "127.0.0.1", port: int = 41451) -> Any:
+    """
+    Вернуть клиент AirSim. В настоящем коде здесь бы
+    было `return airsim.MultirotorClient(server_addr, port)`.
+    """
+    import importlib
+
+    airsim: Any = importlib.import_module("airsim")  # runtime-импорт
+    client: Any = airsim.MultirotorClient(server_addr, port)
+    client.confirmConnection()
+    return client

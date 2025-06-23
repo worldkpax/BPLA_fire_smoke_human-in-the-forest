@@ -2,7 +2,9 @@
 Чистые геометрические функции без внешних зависимостей —
 можно переиспользовать из flight-планировщика и из детектора.
 """
+
 from __future__ import annotations
+
 import math
 from typing import Tuple
 
@@ -21,7 +23,6 @@ def haversine_m(p1: Tuple[float, float], p2: Tuple[float, float]) -> float:
 
 
 def offset_latlon(lat: float, lon: float, dx_m: float, dy_m: float) -> Tuple[float, float]:
-    """Сместить точку на dx (восток), dy (север) в метрах — вернуть новую (lat, lon)."""
     d_lat = dy_m / EARTH_RADIUS_M
     d_lon = dx_m / (EARTH_RADIUS_M * math.cos(math.radians(lat)))
     return lat + math.degrees(d_lat), lon + math.degrees(d_lon)

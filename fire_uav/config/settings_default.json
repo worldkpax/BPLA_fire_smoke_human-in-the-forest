@@ -4,5 +4,7 @@
   "side_overlap": 0.7,
   "front_overlap": 0.8,
   "battery_wh": 4500,
-  "no_fly_geojson": "data/no_fly_zones.geojson"
+  "no_fly_geojson": "data/no_fly_zones.geojson",
+  "yolo_model": "data/models/best_yolo11.pt",
+  "yolo_conf": 0.30
 }
