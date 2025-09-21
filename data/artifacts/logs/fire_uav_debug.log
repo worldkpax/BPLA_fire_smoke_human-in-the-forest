@@ -76,3 +76,13 @@ AttributeError: '_DummyEngine' object has no attribute 'detect'
 23:12:00 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001F0A36E2200>
 23:12:00 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000001F0A5BD2CB0>>
 23:12:00 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+13:27:44 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000254120FEDE0>
+13:27:44 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000254174F6200>
+13:27:44 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x0000025419A82CB0>>
+13:27:44 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+15:18:29 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001F81D08EDE0>
+15:18:29 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001F822472200>
+15:18:29 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM object at 0x000001F824932CB0>>
+15:18:29 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+15:19:10 DEBUG             bus: EMIT  app_start     NoneType
+15:19:10 DEBUG fire_uav.gui.viewmodels.detector_vm: APP_START emitted
