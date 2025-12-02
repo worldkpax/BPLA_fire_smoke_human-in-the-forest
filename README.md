@@ -4,7 +4,7 @@
 
 Инструментарий для обнаружения дыма/огня/людей и планирования миссий БПЛА. Используются Ultralytics YOLOv11 (PyTorch), OR-Tools + Shapely для маршрутов, FastAPI для REST, и GUI на PySide6/Qt WebEngine.
 
----
+```
 powershell -ExecutionPolicy Bypass -File scripts/setup_env.ps1
 ```
 Скрипт создаст `.venv`, установит зависимости через Poetry и проверит доступность Qt WebEngine. Добавьте флаг `-RuntimeOnly`, если не нужны dev-зависимости (pytest, pre-commit).
@@ -12,7 +12,7 @@ powershell -ExecutionPolicy Bypass -File scripts/setup_env.ps1
 ## Запуск GUI
 ```powershell
 poetry run python -m fire_uav.main
-
+```
 
 ## Запуск CLI (обработка видео/картинки)
 powershell
