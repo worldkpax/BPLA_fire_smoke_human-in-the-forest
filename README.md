@@ -12,10 +12,10 @@ powershell -ExecutionPolicy Bypass -File scripts/setup_env.ps1
 ## Запуск GUI
 ```powershell
 poetry run python -m fire_uav.main
-```
+
 
 ## Запуск CLI (обработка видео/картинки)
-```powershell
+powershell
 poetry run python -m fire_uav.bootstrap detect `
   --input path\to\video.mp4 `
   --model data\models\fire_detector.pt `
