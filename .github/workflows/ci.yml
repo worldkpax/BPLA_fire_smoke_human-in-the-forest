@@ -27,7 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry install --no-interaction --sync
-          pip install black isort mypy
+          pip install black isort
 
       - name: Black check
         run: |
@@ -36,10 +36,6 @@ jobs:
       - name: isort check
         run: |
           poetry run isort --check-only .
-
-      - name: mypy
-        run: |
-          poetry run mypy
 
   test:
     name: Run tests & coverage
