@@ -4,32 +4,10 @@
 
 Инструментарий для обнаружения дыма/огня/людей и планирования миссий БПЛА. Используются Ultralytics YOLOv11 (PyTorch), OR-Tools + Shapely для маршрутов, FastAPI для REST, и GUI на PySide6/Qt WebEngine.
 
----
-
-## Требования
-- Python 3.10–3.12
-- Poetry ≥ 1.8
-- Windows 10/11 (GUI проверена здесь; на Linux/macOS возможны отличия из‑за Qt WebEngine)
-
-## Быстрый старт (Windows, одна команда)
-```powershell
-git clone https://github.com/username/fire_uav.git
-cd fire_uav
+```
 powershell -ExecutionPolicy Bypass -File scripts/setup_env.ps1
 ```
 Скрипт создаст `.venv`, установит зависимости через Poetry и проверит доступность Qt WebEngine. Добавьте флаг `-RuntimeOnly`, если не нужны dev-зависимости (pytest, pre-commit).
-
-## Ручная установка (если без скрипта)
-```powershell
-$Env:POETRY_VIRTUALENVS_IN_PROJECT=1  # чтобы venv создавался в ./.venv
-poetry install --sync --with dev       # или --without dev для минимального окружения
-```
-
-## Подготовка данных
-```powershell
-mkdir data\models data\artifacts data\outputs 2>$null
-```
-Положите веса детектора в `data/models/` (например, `fire_detector.pt`). Артефакты и результаты будут складываться в `data/artifacts` и `data/outputs`.
 
 ## Запуск GUI
 ```powershell
@@ -37,7 +15,7 @@ poetry run python -m fire_uav.main
 ```
 
 ## Запуск CLI (обработка видео/картинки)
-```powershell
+powershell
 poetry run python -m fire_uav.bootstrap detect `
   --input path\to\video.mp4 `
   --model data\models\fire_detector.pt `
@@ -55,6 +33,3 @@ poetry run uvicorn fire_uav.api.main_rest:app --host 0.0.0.0 --port 8000
 poetry run pytest --cov=fire_uav --cov-report=term-missing
 ```
 
-## Полезно знать
-- Виртуальное окружение по умолчанию создаётся в `.venv` (управляется переменной `POETRY_VIRTUALENVS_IN_PROJECT`).
-- Если Qt WebEngine не находится при запуске, перезапустите `scripts/setup_env.ps1` или выполните `poetry install --sync` после очистки `.venv`.
