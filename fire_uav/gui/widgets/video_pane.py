@@ -3,14 +3,16 @@ from __future__ import annotations
 
 import numpy as np
 from numpy.typing import NDArray
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QImage, QPainter, QPen, QPixmap
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QImage, QPainter, QPen, QPixmap
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 
 class VideoPane(QWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.setObjectName("videoPane")
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self._label = QLabel(alignment=Qt.AlignmentFlag.AlignCenter)
         QVBoxLayout(self).addWidget(self._label)
 

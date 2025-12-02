@@ -12,8 +12,9 @@ from __future__ import annotations
 import logging
 from typing import Any, Final, List, Tuple
 
-from PyQt6.QtCore import QObject, pyqtSignal
+from PySide6.QtCore import QObject, Signal
 
+from fire_uav.config import settings
 from fire_uav.services.bus import Event, bus
 
 _log: Final = logging.getLogger(__name__)
@@ -24,11 +25,12 @@ BBox = Tuple[int, int, int, int]
 
 class DetectorVM(QObject):
     # -------- публичные сигналы для GUI -------- #
-    detection = pyqtSignal(object)  # весь batch
-    bboxes = pyqtSignal(list)  # List[BBox]
+    detection = Signal(object)  # весь batch
+    bboxes = Signal(list)  # List[BBox]
 
     def __init__(self) -> None:
         super().__init__()
+        self._conf = getattr(settings, "yolo_conf", 0.25)
         # mypy жалуется на несовпадение типа колбэка — подавляем
         bus.subscribe(Event.DETECTION, self._on_detection)  # type: ignore[arg-type]
         _log.info("DetectorVM subscribed to Event.DETECTION")
@@ -42,6 +44,12 @@ class DetectorVM(QObject):
         """Остановить детектор."""
         bus.emit(Event.APP_STOP)
         _log.debug("APP_STOP emitted")
+
+    def set_conf(self, value: float) -> None:
+        """Update detection confidence threshold (broadcast via EventBus)."""
+        self._conf = value
+        bus.emit(Event.CONF_CHANGE, value)
+        _log.debug("CONF_CHANGE emitted -> %.2f", value)
 
     def _on_detection(self, batch: Any) -> None:
         """Пришёл batch → пробрасываем сигналы наверх."""

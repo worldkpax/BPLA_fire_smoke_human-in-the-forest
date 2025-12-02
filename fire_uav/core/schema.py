@@ -35,3 +35,25 @@ class FrameMeta(BaseModel):
 class DetectionsBatch(BaseModel):
     frame: FrameMeta
     detections: List[Detection]
+
+
+class TelemetrySample(BaseModel):
+    lat: float = Field(..., ge=-90, le=90)
+    lon: float = Field(..., ge=-180, le=180)
+    alt_m: float = Field(..., ge=0)
+    yaw_deg: float = Field(0.0, description="Heading/yaw angle in degrees")
+    pitch_deg: float = Field(0.0)
+    roll_deg: float = Field(0.0)
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    source: str | None = Field(
+        default=None,
+        description="Optional identifier of the telemetry source (autopilot channel, etc.)",
+    )
+
+
+class GeoDetection(BaseModel):
+    class_id: int
+    confidence: float
+    location: WorldCoord
+    captured_at: datetime
+    source_frame: str

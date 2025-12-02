@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from typing import cast
 
-from PyQt6.QtWidgets import QTextEdit
+from PySide6.QtWidgets import QTextEdit
 
 
 class QtLogHandler(logging.Handler):

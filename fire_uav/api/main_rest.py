@@ -14,13 +14,31 @@ from pydantic import BaseModel, Field
 
 import fire_uav.infrastructure.providers as deps
 from fire_uav.bootstrap import init_core
+from fire_uav.config import settings
+from fire_uav.core.schema import GeoDetection
 from fire_uav.services.bus import Event, bus
+from fire_uav.services.detections import DetectionBatchPayload, DetectionPipeline
+from fire_uav.services.telemetry.transmitter import Transmitter
 
 # Инициализируем ядро (очереди, LifecycleManager, шина)
 init_core()
 
 log = logging.getLogger("api")
 app = FastAPI(title="fire-uav API", version="0.1.0")
+
+_transmitter: Transmitter | None = None
+if settings.ground_station_enabled:
+    try:
+        _transmitter = Transmitter(
+            host=settings.ground_station_host,
+            port=settings.ground_station_port,
+            udp=settings.ground_station_udp,
+        )
+    except Exception:  # noqa: BLE001
+        log.exception("Failed to connect transmitter to ground station")
+        _transmitter = None
+
+detection_pipeline = DetectionPipeline(transmitter=_transmitter)
 
 
 class Waypoint(BaseModel):
@@ -100,6 +118,18 @@ def get_last_detection() -> Any:
             detail="No detections yet",
         )
     return deps.last_detection
+
+
+@app.post("/api/detections", response_model=List[GeoDetection])
+def process_detections(batch: DetectionBatchPayload) -> List[GeoDetection]:
+    """
+    Принять сырые детекции модели и телеметрию, выполнить голосование K из N и
+    вернуть подтверждённые объекты с координатами.
+    """
+    ensure_running()
+    result = detection_pipeline.process_batch(batch)
+    log.info("Detections ingested: raw=%d confirmed=%d", len(batch.detections), len(result))
+    return result
 
 
 @app.get("/metrics", summary="Prometheus metrics")

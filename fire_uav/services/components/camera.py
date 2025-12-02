@@ -12,7 +12,7 @@ from typing import Final
 
 import cv2
 import numpy as np
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal
 
 from fire_uav.services.components.base import ManagedComponent, State
 from fire_uav.services.metrics import fps_gauge
@@ -21,8 +21,8 @@ LOG: Final = logging.getLogger("camera")
 
 
 class _CameraQtThread(QThread):
-    frame: pyqtSignal = pyqtSignal(np.ndarray)
-    error: pyqtSignal = pyqtSignal(str)
+    frame: Signal = Signal(np.ndarray)
+    error: Signal = Signal(str)
 
     _LOG_EVERY: Final[float] = 5.0  # сек
 

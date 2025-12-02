@@ -4,8 +4,8 @@ from __future__ import annotations
 import logging
 from typing import Callable
 
-from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer
-from PyQt6.QtWidgets import QLabel, QWidget
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer
+from PySide6.QtWidgets import QLabel, QWidget
 
 _log = logging.getLogger(__name__)
 

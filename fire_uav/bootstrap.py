@@ -1,17 +1,18 @@
 # mypy: ignore-errors
 from __future__ import annotations
 
+import logging
 from queue import Queue
 
 import cv2
-from PyQt6.QtWidgets import QApplication
 
 import fire_uav.infrastructure.providers as deps
-from fire_uav.gui.utils.gui_toast import show_toast
 from fire_uav.services.bus import Event, bus
 from fire_uav.services.components.camera import CameraThread
 from fire_uav.services.components.detect import DetectThread
 from fire_uav.services.lifecycle.manager import LifecycleManager
+
+_log = logging.getLogger(__name__)
 
 
 def _camera_available(index: int | str = 0) -> bool:
@@ -42,9 +43,7 @@ def init_core(*, fps: int = 30) -> None:
         deps.camera_factory = None
         deps.detect_factory = None
 
-        # если GUI уже создан — показываем всплывашку
-        if QApplication.instance():
-            show_toast(None, "⚠ Камера не найдена — видео поток не будет запущен")
+        _log.warning("Camera not found — GUI will start without live feed")
 
     deps.lifecycle_manager = LifecycleManager()
     bus.subscribe(Event.APP_START, lambda *_: deps.get_lifecycle().start_all())

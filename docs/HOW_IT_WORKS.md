@@ -39,7 +39,7 @@
    * **Detection**: поток камеры → очередь → YOLO-детектор → публикация результатов.
    * **Planning**: слушает события детекции, строит маршруты с помощью OR-Tools и Shapely.
 5. **Outputs & Metrics**: результаты сохраняются в `data/outputs`, логи в `data/artifacts`, метрики идут в Prometheus.
-6. **REST API** (FastAPI) и **GUI** (MVVM на PyQt6) позволяют управлять и визуализировать работу системы.
+6. **REST API** (FastAPI) и **GUI** (Qt Quick на PySide6) позволяют управлять и визуализировать работу системы.
 7. **Tests** + **CI**: покрытие ≥ 80%, проверки через GitHub Actions.
 
 ---
@@ -143,7 +143,7 @@ if mode == "detect":
 * **Структура**:
 
   * `fire_uav/gui/viewmodels/` содержит `DetectorVM`, `PlannerVM`, которые слушают `EventBus`.
-  * `fire_uav/gui/views/` содержит PyQt6 UI-классы: `MainWindow`, `VideoPane`, элементы управления.
+  * `fire_uav/gui/views/` содержит Qt Quick/QML UI, элементы управления.
 * **Взаимодействие**:
 
   1. Пользователь нажимает «Start» ➔ VM вызывает `bootstrap.init_core().run()`.

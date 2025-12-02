@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from queue import Queue
-from typing import Any, Callable, Optional
+from typing import TYPE_CHECKING, Any, Callable, Optional
 
-from fire_uav.services.components.camera import CameraThread
-from fire_uav.services.components.detect import DetectThread
 from fire_uav.services.lifecycle.manager import LifecycleManager
+
+if TYPE_CHECKING:  # imports only for type checking to avoid circular deps
+    from fire_uav.services.components.camera import CameraThread
+    from fire_uav.services.components.detect import DetectThread
 
 # ────────── очереди ────────── #
 frame_queue: Optional[Queue] = None  # кадры camera → detector

@@ -8,10 +8,10 @@ from typing import Final
 
 import folium
 from folium.plugins import Draw
-from PyQt6.QtCore import QUrl, pyqtSignal, pyqtSlot
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
-from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWidgets import QFileDialog, QHBoxLayout, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt, QUrl, Signal, Slot
+from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWidgets import QFileDialog, QHBoxLayout, QPushButton, QVBoxLayout, QWidget
 
 from fire_uav.gui.utils.gui_toast import show_toast
 from fire_uav.gui.viewmodels.planner_vm import PlannerVM
@@ -23,7 +23,7 @@ _log: Final = logging.getLogger(__name__)
 
 
 class _Page(QWebEnginePage):
-    consoleMessage = pyqtSignal(int, str, int, str)  # level, msg, line, source
+    consoleMessage = Signal(int, str, int, str)  # level, msg, line, source
 
     def javaScriptConsoleMessage(self, level: int, msg: str, line: int, source: str) -> None:
         """Перехват сообщений из JS-консоли и эмит в Qt."""
@@ -38,12 +38,16 @@ class PlanWidget(QWidget):
         self._vm = vm
         self._tmp_html: Path = Path(tempfile.gettempdir()) / "plan_map.html"
 
-        # Top bar
+        self.setObjectName("planWidgetRoot")
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
+
         self._btn_gen = QPushButton("Generate Path")
         self._btn_save = QPushButton("Save Plan")
         self._btn_imp = QPushButton("Import GeoJSON")
 
         top = QHBoxLayout()
+        top.setContentsMargins(0, 0, 0, 8)
+        top.setSpacing(10)
         top.addWidget(self._btn_gen)
         top.addWidget(self._btn_save)
         top.addWidget(self._btn_imp)
@@ -58,8 +62,8 @@ class PlanWidget(QWidget):
             True,
         )
 
-        # Layout
         lay = QVBoxLayout(self)
+        lay.setContentsMargins(0, 0, 0, 0)
         lay.addLayout(top)
         lay.addWidget(self._view)
 
@@ -76,9 +80,15 @@ class PlanWidget(QWidget):
     def _render_map(self) -> None:
         """Создаёт карту с рисованием и сохраняет её во временный HTML."""
         path = self._vm.get_path()
-        center = path[0] if path else (55.75, 37.61)
+        center = path[0] if path else (56.02, 92.9)
 
-        fmap = folium.Map(center, zoom_start=14, control_scale=True)
+        fmap = folium.Map(
+            center,
+            zoom_start=13,
+            control_scale=False,
+            zoom_control=True,
+            prefer_canvas=True,
+        )
 
         Draw(
             export=False,
@@ -99,7 +109,7 @@ class PlanWidget(QWidget):
         fmap.save(self._tmp_html)
         self._view.setUrl(QUrl.fromLocalFile(str(self._tmp_html)))
 
-    @pyqtSlot(int, str, int, str)
+    @Slot(int, str, int, str)
     def _js_bridge(self, level: int, message: str, line: int, source: str) -> None:
         """
         JS → Python bridge: ловим сообщения 'PY_PATH ' + GeoJSON
@@ -140,6 +150,9 @@ class PlanWidget(QWidget):
   map.on(L.Draw.Event.DELETED, () => {
       send({type:'LineString', coordinates:[]});
   });
+
+  const attr = document.querySelector('.leaflet-control-attribution');
+  if (attr) attr.style.display = 'none';
 })();"""
         self._view.page().runJavaScript(js)
 
