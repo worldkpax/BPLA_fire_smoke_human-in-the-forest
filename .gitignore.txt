@@ -21,3 +21,7 @@ __pycache__/
 # Исключение данных среды
 .env
 *.env
+fire_uav.egg-info/
+.mypy_cache/
+data/
+.coverage

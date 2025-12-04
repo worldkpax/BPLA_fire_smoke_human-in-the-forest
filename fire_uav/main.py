@@ -1,0 +1,49 @@
+"""Bootstrap и запуск GUI."""
+
+from __future__ import annotations
+
+import os
+import sys
+
+# Avoid stale QML cache so UI tweaks are visible on restart.
+os.environ.setdefault("QML_DISABLE_DISK_CACHE", "1")
+
+import PySide6.QtWebEngineQuick  # noqa: F401  # registers QML types
+from PySide6.QtGui import QGuiApplication
+
+# QtWebEngine module name differs between PySide6 builds.
+try:
+    from PySide6.QtWebEngine import QtWebEngine  # PySide6 >= 6.8
+except ImportError:
+    try:
+        from PySide6.QtWebEngineQuick import QtWebEngineQuick as QtWebEngine  # PySide6 <= 6.7
+    except ImportError as exc:
+        raise RuntimeError(
+            "PySide6 WebEngine is missing. Reinstall with Qt WebEngine support (poetry install or pip install PySide6-Addons)."
+        ) from exc
+
+import fire_uav.infrastructure.providers as deps
+from fire_uav.bootstrap import init_core
+from fire_uav.gui.windows.main_window import MainWindow
+from fire_uav.logging_setup import setup_logging
+
+
+def main() -> None:  # noqa: D401
+    setup_logging()
+    init_core()  # создаёт очереди, lifecycle, bus-binding
+
+    QtWebEngine.initialize()
+    app = QGuiApplication(sys.argv)
+    win = MainWindow()
+
+    # регистрируем только реально существующие компоненты
+    for comp in (getattr(win, "cam_thr", None), getattr(win, "det_thr", None)):
+        if comp is not None:
+            deps.get_lifecycle().register(comp)
+
+    win.show()
+    sys.exit(app.exec())
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()

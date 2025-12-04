@@ -1,0 +1,33 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  terse:
+    format: "%(asctime)s %(levelname)-5s %(name)15s: %(message)s"
+    datefmt: "%H:%M:%S"
+  colored:
+    (): colorlog.ColoredFormatter
+    format: "%(log_color)s%(asctime)s %(levelname)-5s %(name)15s:%(reset)s %(message)s"
+    datefmt: "%H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: colored
+  debug-file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: terse
+    filename: "fire_uav_debug.log"
+    maxBytes: 2_097_152        # 2 MiB
+    backupCount: 3
+
+root:
+  level: DEBUG
+  handlers: [console, debug-file]
+
+loggers:
+  # подавляем лишний спам
+  urllib3: {level: WARNING}
+  PIL:     {level: WARNING}
