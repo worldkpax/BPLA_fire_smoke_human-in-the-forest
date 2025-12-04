@@ -159,8 +159,13 @@ class PlanWidget(QWidget):
     def _on_generate(self) -> None:
         """Генерация пути по current polygon."""
         try:
-            self._vm.generate_path()
-            show_toast(self, "Path ready")
+            fn = self._vm.generate_path()
+            rel = fn
+            try:
+                rel = fn.relative_to(fn.parents[1])
+            except Exception:
+                pass
+            show_toast(self, f"Path saved -> {rel}")
         except Exception as exc:
             show_toast(self, str(exc))
 

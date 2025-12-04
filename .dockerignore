@@ -1,0 +1,15 @@
+.git
+.github
+.idea
+.mypy_cache
+.pytest_cache
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.coverage
+dist
+build
+data

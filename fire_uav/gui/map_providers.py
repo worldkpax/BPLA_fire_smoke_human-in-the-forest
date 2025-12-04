@@ -16,14 +16,26 @@ class MapProvider(Protocol):
     def render_map(self, path: list[tuple[float, float]], token: int) -> Path: ...
     @property
     def bridge_script(self) -> str: ...
+    def set_provider(self, provider: str, *, offline: bool, cache_dir: Path | None) -> None: ...
 
 
 class FoliumMapProvider:
     """
-    Default Leaflet/Folium map provider.
-
-    Generates a local HTML with draw controls and returns the file path.
+    Leaflet/Folium map provider with tile caching/offline toggle and provider switch.
     """
+
+    TILESETS: dict[str, tuple[str, str]] = {
+        "osm": ("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "OpenStreetMap"),
+        "terrain": (
+            "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+            "Stamen Terrain",
+        ),
+        "toner": ("https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", "Stamen Toner"),
+        "sat": (
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+            "Esri World Imagery",
+        ),
+    }
 
     _BRIDGE_JS = """\
 (() => {
@@ -53,16 +65,41 @@ class FoliumMapProvider:
   if (attr) attr.style.display = 'none';
 })();"""
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        provider: str = "osm",
+        *,
+        offline: bool = False,
+        cache_dir: Path | None = None,
+    ) -> None:
         self._map_path: Path = Path(tempfile.gettempdir()) / "plan_map.html"
         self._radius_px = 18  # match QML card radius
+        self._provider = provider if provider in self.TILESETS else "osm"
+        self._offline = offline
+        self._cache_dir = cache_dir or Path(tempfile.gettempdir()) / "tile-cache"
+        self._cache_dir.mkdir(parents=True, exist_ok=True)
 
     @property
     def bridge_script(self) -> str:
         return self._BRIDGE_JS
 
+    def set_provider(self, provider: str, *, offline: bool, cache_dir: Path | None = None) -> None:
+        self._provider = provider if provider in self.TILESETS else "osm"
+        self._offline = offline
+        if cache_dir:
+            self._cache_dir = cache_dir
+            self._cache_dir.mkdir(parents=True, exist_ok=True)
+
+    def _tile_layer(self) -> tuple[str, str]:
+        if self._offline:
+            url = f"file://{self._cache_dir.as_posix()}" + "/{z}/{x}/{y}.png"
+            return url, f"Offline cache ({self._provider})"
+        url, attr = self.TILESETS.get(self._provider, self.TILESETS["osm"])
+        return url, attr
+
     def render_map(self, path: list[tuple[float, float]], token: int) -> Path:
         center = path[0] if path else (56.02, 92.9)
+        tiles_url, attr = self._tile_layer()
 
         fmap = folium.Map(
             center,
@@ -70,7 +107,16 @@ class FoliumMapProvider:
             control_scale=False,
             zoom_control=True,
             prefer_canvas=True,
+            tiles=None,
         )
+
+        folium.raster_layers.TileLayer(
+            tiles=tiles_url,
+            attr=attr,
+            name=self._provider,
+            overlay=False,
+            control=False,
+        ).add_to(fmap)
 
         Draw(
             export=False,
@@ -88,7 +134,6 @@ class FoliumMapProvider:
         if path:
             folium.PolyLine(path, color="#67d3ff", weight=3).add_to(fmap)
 
-        # match rounded QML container so corners aren't square
         fmap.get_root().header.add_child(
             folium.Element(
                 f"""
@@ -113,9 +158,6 @@ html, body {{
 class UnrealMapProvider:
     """
     Placeholder for Unreal/remote map integration.
-
-    In this mode, render_map could be adapted to call an external service or
-    simply return a static URL provided by Unreal. Not implemented yet.
     """
 
     def __init__(self, url: str) -> None:
@@ -124,6 +166,9 @@ class UnrealMapProvider:
     @property
     def bridge_script(self) -> str:
         return ""
+
+    def set_provider(self, provider: str, *, offline: bool, cache_dir: Path | None = None) -> None:
+        raise NotImplementedError
 
     def render_map(self, path: list[tuple[float, float]], token: int) -> Path:
         raise NotImplementedError("Unreal map provider is not implemented yet")

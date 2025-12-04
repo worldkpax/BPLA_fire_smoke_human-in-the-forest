@@ -1,10 +1,10 @@
 """
-DetectorVM — слой ViewModel для детектора.
+DetectorVM �?" �?�>�?�� ViewModel �?�>�? �?��'���'�?�?�.
 
-• Публикует события APP_START / APP_STOP / CONF_CHANGE через EventBus
-• Принимает пачки детекций, пробрасывает их в GUI:
-    ─ полный batch   → сигнал detection
-    ─ список bbox'ов → сигнал bboxes  (для VideoPane)
+�?� �?�?�+�>���?��' �?�?�+�<�'��? APP_START / APP_STOP / CONF_CHANGE �ؐ�?��� EventBus
+�?� �?�?��?��?����' �����ؐ�� �?��'���Ő��, ���?�?�+�?���?�<�?����' ��: �? GUI:
+    �"? ���?�>�?�<�� batch   ��' �?��?�?���> detection
+    �"? �?����?�?�� bbox'�?�? ��' �?��?�?���> bboxes  (�?�>�? VideoPane)
 """
 
 from __future__ import annotations
@@ -24,24 +24,24 @@ BBox = Tuple[int, int, int, int]
 
 
 class DetectorVM(QObject):
-    # -------- публичные сигналы для GUI -------- #
-    detection = Signal(object)  # весь batch
+    # -------- ���?�+�>��ؐ?�<�� �?��?�?���>�< �?�>�? GUI -------- #
+    detection = Signal(object)  # �?��?�? batch
     bboxes = Signal(list)  # List[BBox]
 
     def __init__(self) -> None:
         super().__init__()
         self._conf = getattr(settings, "yolo_conf", 0.25)
-        # mypy жалуется на несовпадение типа колбэка — подавляем
+        # mypy ����>�?��'�?�? �?�� �?��?�?�?�����?��?��� �'����� ��?�>�+�?��� �?" ���?�?���?�>�?��?
         bus.subscribe(Event.DETECTION, self._on_detection)  # type: ignore[arg-type]
         _log.info("DetectorVM subscribed to Event.DETECTION")
 
     def start(self) -> None:
-        """Запустить детектор (подключить EventBus, и т.п.)."""
+        """�-�����?�?�'��'�? �?��'���'�?�? (���?�?��>�?�ؐ�'�? EventBus, �� �'.��.)."""
         bus.emit(Event.APP_START)
         _log.debug("APP_START emitted")
 
     def stop(self) -> None:
-        """Остановить детектор."""
+        """�?�?�'���?�?�?��'�? �?��'���'�?�?."""
         bus.emit(Event.APP_STOP)
         _log.debug("APP_STOP emitted")
 
@@ -52,13 +52,16 @@ class DetectorVM(QObject):
         _log.debug("CONF_CHANGE emitted -> %.2f", value)
 
     def _on_detection(self, batch: Any) -> None:
-        """Пришёл batch → пробрасываем сигналы наверх."""
+        """�?�?��?�'�> batch ��' ���?�?�+�?���?�<�?����? �?��?�?���>�< �?���?��?�:."""
         self.detection.emit(batch)
 
-        # извлекаем bbox'ы из batch.detections
+        # ����?�>������? bbox'�< ��� batch.detections
         bxs: List[BBox] = []
         for d in getattr(batch, "detections", []):
-            if all(hasattr(d, k) for k in ("x1", "y1", "x2", "y2")):
+            if hasattr(d, "bbox") and isinstance(getattr(d, "bbox"), tuple):
+                x1, y1, x2, y2 = getattr(d, "bbox")
+                bxs.append((int(x1), int(y1), int(x2), int(y2)))
+            elif all(hasattr(d, k) for k in ("x1", "y1", "x2", "y2")):
                 bxs.append((int(d.x1), int(d.y1), int(d.x2), int(d.y2)))
 
         self.bboxes.emit(bxs)

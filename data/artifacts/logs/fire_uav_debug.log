@@ -3972,3 +3972,265 @@ AttributeError: '_DummyEngine' object has no attribute 'detect'
 15:51:14 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
 15:51:16 DEBUG             bus: EMIT  conf_change   float
 15:51:16 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+16:59:59 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+16:59:59 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000019508FB2AC0>
+16:59:59 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000019508FB2980>
+16:59:59 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x19500fd1780) at 0x000001950729D280>>
+16:59:59 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+16:59:59 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:00:00 DEBUG             bus: EMIT  conf_change   float
+17:00:00 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:16:21 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:16:21 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000025508E53C40>
+17:16:21 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000025508E53B00>
+17:16:22 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x25506a0d360) at 0x0000025508C2D680>>
+17:16:22 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:16:22 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:16:22 DEBUG             bus: EMIT  conf_change   float
+17:16:22 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:20:02 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:20:02 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001D5561DF880>
+17:20:02 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001D5561DF740>
+17:20:02 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1d5540d6560) at 0x000001D555ED9400>>
+17:20:02 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:20:02 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:20:03 DEBUG             bus: EMIT  conf_change   float
+17:20:03 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:26:33 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:26:33 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000002A46166F880>
+17:26:33 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000002A46166F740>
+17:26:34 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x2a4667a1230) at 0x000002A45E037E00>>
+17:26:34 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:26:34 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:26:34 DEBUG             bus: EMIT  conf_change   float
+17:26:34 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:39:03 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:39:03 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000230E002F880>
+17:39:03 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000230E002F740>
+17:39:03 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x230da0af820) at 0x00000230DFD84E00>>
+17:39:03 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:39:03 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:39:04 DEBUG             bus: EMIT  conf_change   float
+17:39:04 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+23:44:35 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+23:44:35 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000022656093880>
+23:44:35 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000022656093740>
+23:44:36 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x2262eb29640) at 0x0000022655DECD00>>
+23:44:36 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+23:44:36 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+23:44:38 DEBUG             bus: EMIT  conf_change   float
+23:44:38 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+16:29:39 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+16:29:39 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001E84CEDF880>
+16:29:39 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001E84CEDF740>
+16:29:39 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1e84abb7260) at 0x000001E84CC5EA00>>
+16:29:39 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+16:29:39 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+16:29:40 DEBUG             bus: EMIT  conf_change   float
+16:29:40 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+16:52:11 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+16:52:11 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001CE09B33BA0>
+16:52:11 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001CE09B33A60>
+16:52:11 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1ce0784e1f0) at 0x000001CE09831E80>>
+16:52:11 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+16:52:11 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+16:52:11 DEBUG             bus: EMIT  conf_change   float
+16:52:11 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+16:57:00 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+16:57:00 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000028E4993F920>
+16:57:00 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000028E4993F7E0>
+16:57:00 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x28e4ecd42a0) at 0x0000028E48A573C0>>
+16:57:00 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+16:57:00 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+16:57:00 DEBUG             bus: EMIT  conf_change   float
+16:57:00 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:00:12 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:00:12 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000246D679F920>
+17:00:12 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000246D679F7E0>
+17:00:12 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x246cdb9bf90) at 0x00000246D66B3D00>>
+17:00:12 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:00:12 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:00:13 DEBUG             bus: EMIT  conf_change   float
+17:00:13 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:05:06 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:05:06 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000185DF973920>
+17:05:06 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000185DF9737E0>
+17:05:06 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x185dce36550) at 0x00000185DF44DBC0>>
+17:05:06 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:05:06 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:05:07 DEBUG             bus: EMIT  conf_change   float
+17:05:07 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:11:00 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:11:00 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000161E956F920>
+17:11:00 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000161E956F7E0>
+17:11:00 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x161e717c000) at 0x00000161E8DD5300>>
+17:11:00 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:11:00 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:11:01 DEBUG             bus: EMIT  conf_change   float
+17:11:01 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+17:14:59 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+17:14:59 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000237A06BF920>
+17:14:59 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000237A06BF7E0>
+17:14:59 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x237a597ea50) at 0x000002379F7D6F80>>
+17:14:59 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+17:14:59 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+17:15:00 DEBUG             bus: EMIT  conf_change   float
+17:15:00 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+18:06:13 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+18:06:13 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001B8D394F920>
+18:06:13 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001B8D394F7E0>
+18:06:13 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1b8d166ec20) at 0x000001B8D0316880>>
+18:06:13 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+18:06:13 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+18:06:14 DEBUG             bus: EMIT  conf_change   float
+18:06:14 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+18:16:14 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+18:16:14 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000203612BF920>
+18:16:14 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000203612BF7E0>
+18:16:14 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x2035f132000) at 0x00000203612A8840>>
+18:16:14 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+18:16:14 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+18:16:14 DEBUG             bus: EMIT  conf_change   float
+18:16:14 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+18:45:36 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+18:45:36 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000002447472F920>
+18:45:36 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000002447472F7E0>
+18:45:37 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x244720fed00) at 0x00000244710F5BC0>>
+18:45:37 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+18:45:37 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+18:45:37 DEBUG             bus: EMIT  conf_change   float
+18:45:37 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+19:06:40 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+19:06:40 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000259148AB920>
+19:06:40 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000259148AB7E0>
+19:06:41 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x25911ed7400) at 0x000002591487AA40>>
+19:06:41 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+19:06:41 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+19:06:41 DEBUG             bus: EMIT  conf_change   float
+19:06:41 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+19:13:29 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+19:13:29 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000021AE140F920>
+19:13:29 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000021AE140F7E0>
+19:13:29 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x21adf21be20) at 0x0000021ADE3BC180>>
+19:13:29 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+19:13:29 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+19:13:30 DEBUG             bus: EMIT  conf_change   float
+19:13:30 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+19:29:26 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+19:29:26 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001EA577740E0>
+19:29:26 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001EA57774220>
+19:29:27 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1ea5c9cf860) at 0x000001EA57184180>>
+19:29:27 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+19:29:27 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+19:29:28 DEBUG             bus: EMIT  conf_change   float
+19:29:28 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+23:17:24 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+23:17:24 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000002AB6249FD80>
+23:17:24 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000002AB6249FC40>
+23:17:24 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x2ab67743fa0) at 0x000002AB622A3DC0>>
+23:17:24 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+23:17:24 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+23:17:25 DEBUG             bus: EMIT  conf_change   float
+23:17:25 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+09:54:41 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+09:54:41 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001A4E7783D80>
+09:54:41 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001A4E7783C40>
+09:54:41 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1a4e55660a0) at 0x000001A4E7257EC0>>
+09:54:41 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+09:54:42 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+09:54:43 DEBUG             bus: EMIT  conf_change   float
+09:54:43 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:00:31 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:00:31 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001FC9B5CBD80>
+10:00:31 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001FC9B5CBC40>
+10:00:31 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1fca0757da0) at 0x000001FC9B08D700>>
+10:00:31 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:00:32 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:00:32 DEBUG             bus: EMIT  conf_change   float
+10:00:32 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:05:12 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:05:12 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000025B15CA3D80>
+10:05:12 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000025B15CA3C40>
+10:05:12 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x25b13aa9f20) at 0x0000025B15A12980>>
+10:05:12 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:05:13 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:05:13 DEBUG             bus: EMIT  conf_change   float
+10:05:13 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:07:51 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:07:51 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x0000028A2DCBFD80>
+10:07:51 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x0000028A2DCBFC40>
+10:07:52 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x28a2bce9360) at 0x0000028A2D9C8440>>
+10:07:52 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:07:52 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:07:53 DEBUG             bus: EMIT  conf_change   float
+10:07:53 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:10:10 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:10:10 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000213ECCDFD80>
+10:10:10 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000213ECCDFC40>
+10:10:10 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x213e40c5570) at 0x00000213EC0C5BC0>>
+10:10:10 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:10:10 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:10:11 DEBUG             bus: EMIT  conf_change   float
+10:10:11 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:15:58 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:15:58 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000229EDF3FD80>
+10:15:58 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000229EDF3FC40>
+10:15:59 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x229e5046810) at 0x00000229EDF0F180>>
+10:15:59 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:15:59 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:16:00 DEBUG             bus: EMIT  conf_change   float
+10:16:00 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+10:18:07 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+10:18:07 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x00000195AF1FFD80>
+10:18:07 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x00000195AF1FFC40>
+10:18:07 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x195ad19c750) at 0x00000195ABBBAA80>>
+10:18:07 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+10:18:08 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+10:18:08 DEBUG             bus: EMIT  conf_change   float
+10:18:08 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+11:54:02 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+11:54:02 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001212D4540E0>
+11:54:02 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001212D4542C0>
+11:54:02 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1212ad6b070) at 0x000001212BA813C0>>
+11:54:02 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+11:54:02 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+11:59:32 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+11:59:32 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000002C60A9DBE20>
+11:59:32 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000002C60A9DBCE0>
+11:59:32 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x2c60fb81ec0) at 0x000002C606886800>>
+11:59:32 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+11:59:33 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+11:59:33 DEBUG             bus: EMIT  conf_change   float
+11:59:33 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+12:02:54 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+12:02:54 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001EE706BBE20>
+12:02:54 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001EE706BBCE0>
+12:02:54 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1ee6e47e500) at 0x000001EE6FF9A040>>
+12:02:54 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+12:02:54 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+12:02:55 DEBUG             bus: EMIT  conf_change   float
+12:02:55 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+12:14:36 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+12:14:36 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001DF66BDBE20>
+12:14:36 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001DF66BDBCE0>
+12:14:36 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1df64521e40) at 0x000001DF65935BC0>>
+12:14:36 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+12:14:37 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+12:14:37 DEBUG             bus: EMIT  conf_change   float
+12:14:37 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+18:34:12 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+18:34:12 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001EB687AFE20>
+18:34:12 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001EB687AFCE0>
+18:34:13 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1eb668fede0) at 0x000001EB66AC6440>>
+18:34:13 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+18:34:14 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+18:34:15 DEBUG             bus: EMIT  conf_change   float
+18:34:15 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40
+18:37:41 WARNING fire_uav.bootstrap: Camera not found — GUI will start without live feed
+18:37:41 DEBUG             bus: SUB   app_start     <function init_core.<locals>.<lambda> at 0x000001F02E7DBE20>
+18:37:41 DEBUG             bus: SUB   app_stop      <function init_core.<locals>.<lambda> at 0x000001F02E7DBCE0>
+18:37:41 DEBUG             bus: SUB   detection     <bound method DetectorVM._on_detection of <fire_uav.gui.viewmodels.detector_vm.DetectorVM(0x1f02891f1f0) at 0x000001F02E49EB80>>
+18:37:41 INFO  fire_uav.gui.viewmodels.detector_vm: DetectorVM subscribed to Event.DETECTION
+18:37:41 INFO  fire_uav.gui.windows.main_window: Loading QML UI from K:\Python\git\BPLA_fire_smoke_human-in-the-forest\fire_uav\gui\qml\main.qml
+18:37:42 DEBUG             bus: EMIT  conf_change   float
+18:37:42 DEBUG fire_uav.gui.viewmodels.detector_vm: CONF_CHANGE emitted -> 0.40

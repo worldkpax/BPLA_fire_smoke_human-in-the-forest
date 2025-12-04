@@ -81,6 +81,8 @@ class CameraThread(ManagedComponent):
 
     def __init__(self, index: int | str = 0, fps: int = 30, out_queue=None) -> None:
         super().__init__(name="CameraThread")
+        self.index = index
+        self.fps = fps
         self._qt = _CameraQtThread(index, fps, out_queue)
 
         # прокидываем Qt-сигналы наружу

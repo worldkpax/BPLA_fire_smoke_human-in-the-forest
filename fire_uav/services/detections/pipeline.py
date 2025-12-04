@@ -79,6 +79,17 @@ class DetectionPipeline:
             )
 
         aggregated = self.aggregator.add_many(events)
+        if aggregated:
+            for det in aggregated:
+                logger.info(
+                    "Detection confirmed | cls=%s conf=%.2f lat=%.6f lon=%.6f t=%s frame=%s",
+                    det.class_id,
+                    det.confidence,
+                    det.location.lat,
+                    det.location.lon,
+                    det.captured_at.isoformat(),
+                    det.source_frame,
+                )
         self._transmit(aggregated)
         return aggregated
 
@@ -97,5 +108,12 @@ class DetectionPipeline:
             }
             try:
                 self.transmitter.send(payload)
+                logger.info(
+                    "Sent to ground station: cls=%s conf=%.2f lat=%.6f lon=%.6f",
+                    det.class_id,
+                    det.confidence,
+                    det.location.lat,
+                    det.location.lon,
+                )
             except Exception:  # noqa: BLE001
                 logger.exception("Failed to transmit detection")

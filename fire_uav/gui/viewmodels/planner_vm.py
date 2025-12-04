@@ -18,8 +18,9 @@ class PlannerVM:
     #                     базовые set / get
     # ------------------------------------------------------------------ #
     def save_plan(self, pts: list[Tuple[float, float]]) -> None:
-        """Записать путь (lat, lon) во «внешнее» хранилище (deps)."""
+        """Записать путь (lat, lon) во <внешнее> хранилище (deps)."""
         deps.plan_data = {"path": pts}
+        self.persist_plan()
 
     def get_path(self) -> list[Tuple[float, float]]:
         """Вернуть текущий путь или [] если его ещё нет."""
@@ -28,15 +29,15 @@ class PlannerVM:
     # ------------------------------------------------------------------ #
     #                       generate (по кнопке)
     # ------------------------------------------------------------------ #
-    def generate_path(self) -> list[Tuple[float, float]]:
+    def generate_path(self) -> Path:
         """
-        Покликал → двойной клик завершил линию → жмём «Generate Path».
-        Здесь просто убеждаемся, что polyline действительно есть.
+        Покликал — двойной клик завершил линию — жмём <Generate Path>.
+        Здесь просто убеждаемся, что polyline действительно есть и складываем его на диск.
         """
         path = self.get_path()
         if not path:
             raise RuntimeError("Draw polyline first")
-        return path
+        return self.persist_plan()
 
     # ------------------------------------------------------------------ #
     #                        IMPORT / EXPORT
@@ -50,13 +51,21 @@ class PlannerVM:
         if gj["type"] != "LineString":
             raise RuntimeError("Only LineString supported")
 
-        # Leaflet даёт (lon, lat) — разворачиваем в (lat, lon)
+        # Leaflet даёт (lon, lat) - разворачиваем в (lat, lon)
         pts = [(lat, lon) for lon, lat in gj["coordinates"]]
         self.save_plan(pts)
 
     def export_json(self, fn: Path) -> None:
-        """Сохранить «сырой» JSON вида {"path": [[lat, lon], …]}."""
+        """Сохранить <сырой> JSON вида {"path": [[lat, lon], :]}."""
         Path(fn).write_text(json.dumps(deps.plan_data, indent=2))
+
+    def persist_plan(self) -> Path:
+        """Persist the last path to artifacts for reuse across sessions."""
+        artifacts = Path(__file__).resolve().parents[3] / "data" / "artifacts"
+        artifacts.mkdir(exist_ok=True)
+        fn = artifacts / "plan.json"
+        fn.write_text(json.dumps(deps.plan_data or {}, indent=2))
+        return fn
 
     # ------------------------------------------------------------------ #
     #                QGroundControl mission.plan в artifacts/
