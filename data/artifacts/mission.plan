@@ -1,0 +1,46 @@
+{
+  "fileType": "Plan",
+  "version": 2,
+  "geoFence": {},
+  "rallyPoints": {},
+  "mission": {
+    "items": [
+      {
+        "AMSLAltAboveTerrain": null,
+        "Altitude": 50.0,
+        "AltitudeMode": 1,
+        "Command": 16,
+        "DoJumpId": 0,
+        "Frame": 3,
+        "Params": [
+          0,
+          0,
+          0,
+          0,
+          10.0,
+          20.0,
+          50.0
+        ],
+        "Type": "SimpleItem"
+      },
+      {
+        "AMSLAltAboveTerrain": null,
+        "Altitude": 50.0,
+        "AltitudeMode": 1,
+        "Command": 16,
+        "DoJumpId": 1,
+        "Frame": 3,
+        "Params": [
+          0,
+          0,
+          0,
+          0,
+          11.0,
+          21.0,
+          50.0
+        ],
+        "Type": "SimpleItem"
+      }
+    ]
+  }
+}

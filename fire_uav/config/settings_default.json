@@ -1,0 +1,20 @@
+{
+  "map_center": [56.02, 92.90],
+  "gsd_cm": 3,
+  "side_overlap": 0.7,
+  "front_overlap": 0.8,
+  "battery_wh": 4500,
+  "no_fly_geojson": "data/no_fly_zones.geojson",
+  "yolo_model": "data/models/best_yolo11.pt",
+  "yolo_conf": 0.15,
+  "yolo_classes": [0],
+  "ground_station_enabled": false,
+  "ground_station_host": "127.0.0.1",
+  "ground_station_port": 9000,
+  "ground_station_udp": false,
+  "agg_window": 4,
+  "agg_votes_required": 2,
+  "agg_min_confidence": 0.4,
+  "agg_max_distance_m": 35.0,
+  "agg_ttl_seconds": 8.0
+}

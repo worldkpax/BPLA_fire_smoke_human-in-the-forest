@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16)
+project(route_planner_cpp LANGUAGES CXX)
+find_package(pybind11 CONFIG REQUIRED)
+set(CMAKE_CXX_STANDARD 17)
+pybind11_add_module(route_planner_cpp route_planner.cpp)

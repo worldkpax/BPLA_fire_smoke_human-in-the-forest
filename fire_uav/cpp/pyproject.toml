@@ -1,0 +1,20 @@
+[build-system]
+requires = [
+  "scikit-build-core>=0.5.1",
+  "pybind11>=2.11",
+  "setuptools",
+  "wheel"
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name        = "route_planner_cpp"
+version     = "0.1.0"
+description = "Fast C++ lawn-mower route generator for fire_uav"
+authors     = [ { name = "worldkpax", email = "worldkpax@gmail.com" } ]
+license     = { text = "MIT" }
+
+[tool.scikit-build]
+cmake.minimum-version = "3.16"
+cmake.build-type = "Release"
+wheel.packages        = ["route_planner_cpp"]
