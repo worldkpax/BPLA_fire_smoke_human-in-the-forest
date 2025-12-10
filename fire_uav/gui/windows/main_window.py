@@ -23,6 +23,7 @@ from fire_uav.gui.map_providers import FoliumMapProvider, MapProvider
 from fire_uav.gui.viewmodels.detector_vm import DetectorVM
 from fire_uav.gui.viewmodels.planner_vm import PlannerVM
 from fire_uav.services.components.camera import CameraThread
+from fire_uav.services.bus import Event, bus
 
 _log: Final = logging.getLogger(__name__)
 
@@ -236,6 +237,7 @@ class MapBridge(QObject):
 # --------------------------------------------------------------------------- #
 class AppController(QObject):
     toastRequested = Signal(str)
+    objectNotificationReceived = Signal(str, int, float, str, object)
     frameReady = Signal(str)
     mapUrlChanged = Signal(QUrl)
     logsChanged = Signal()
@@ -290,6 +292,7 @@ class AppController(QObject):
         root = logging.getLogger()
         root.addHandler(self._log_handler)
         self._load_log_history()
+        bus.subscribe(Event.OBJECT_CONFIRMED_UI, self._on_object_confirmed)
 
     # ---------- properties ---------- #
     @Property("QStringList", notify=logsChanged)
@@ -449,6 +452,17 @@ class AppController(QObject):
         self._logs.append(line)
         self._trim_logs()
         self.logsChanged.emit()
+
+    def _on_object_confirmed(self, payload: object) -> None:
+        if not isinstance(payload, dict):
+            return
+        obj_id = str(payload.get("object_id", ""))
+        cls_id = int(payload.get("class_id", -1))
+        conf = float(payload.get("confidence", 0.0))
+        track_id = payload.get("track_id")
+        track_str = f", track {track_id}" if track_id is not None else ""
+        msg = f"Object {obj_id} (class {cls_id}{track_str}, conf {conf:.2f}) detected"
+        self.objectNotificationReceived.emit(obj_id, cls_id, conf, msg, track_id)
 
     def _update_stats(self) -> None:
         now = time.perf_counter()

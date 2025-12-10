@@ -62,7 +62,8 @@ class FoliumMapProvider:
   });
 
   const attr = document.querySelector('.leaflet-control-attribution');
-  if (attr) attr.style.display = 'none';
+  if (map.attributionControl) map.attributionControl.remove();
+  if (attr) attr.remove();
 })();"""
 
     def __init__(
@@ -108,6 +109,7 @@ class FoliumMapProvider:
             zoom_control=True,
             prefer_canvas=True,
             tiles=None,
+            attributionControl=False,
         )
 
         folium.raster_layers.TileLayer(
@@ -142,6 +144,9 @@ class FoliumMapProvider:
     border-radius: {self._radius_px}px !important;
     overflow: hidden;
     background: transparent !important;
+}}
+.leaflet-control-attribution {{
+    display: none !important;
 }}
 html, body {{
     background: transparent !important;

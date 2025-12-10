@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 import fire_uav.infrastructure.providers as deps
 from fire_uav.bootstrap import init_core
 from fire_uav.config import settings
-from fire_uav.core.schema import GeoDetection
+from fire_uav.module_core.schema import GeoDetection
 from fire_uav.services.bus import Event, bus
 from fire_uav.services.detections import DetectionBatchPayload, DetectionPipeline
 from fire_uav.services.telemetry.transmitter import Transmitter

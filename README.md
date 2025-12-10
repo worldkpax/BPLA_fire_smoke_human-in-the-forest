@@ -35,3 +35,17 @@ poetry run uvicorn fire_uav.api.main_rest:app --host 0.0.0.0 --port 8000
 ```powershell
 poetry run pytest --cov=fire_uav --cov-report=term-missing
 ```
+
+## Native core (C++ ускорения)
+- Модуль `cpp/native_core` даёт быстрые гео-утилиты: расстояние, проекция bbox→земля с yaw/pitch/roll и `offset_latlon`.  
+- `fire_uav/module_core/detections/pipeline.py` использует `NativeGeoProjector`, когда собран модуль и включён флаг `use_native_core` в `config/settings_default.json` (иначе остаётся Python-реализация); планировщик аналогично переключает `NativeEnergyModel`.
+- Трекинг детекций может работать через `native_core.BBoxTracker` (переключение тем же флагом `use_native_core`); в Python остаётся тот же интерфейс `assign_and_smooth`.
+- Сборка на Jetson/ARM64:
+  ```bash
+  cd cpp/native_core
+  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+  cmake --build build
+  # добавить собранный .so в PYTHONPATH или скопировать рядом с fire_uav/module_core/native_core.*.so
+  ```
+- Зависимости для сборки на Jetson: `sudo apt install cmake libpython3-dev`, `pip install pybind11`; при сборке внутри venv убедитесь, что активированы нужные include-пути Python.
+- Включение в рантайме: поставьте `use_native_core` в `config/settings_default.json` в `true` или пробросьте переменную окружения `FIRE_UAV_ROLE`/конфиг с тем же ключом, чтобы пайплайн и планировщик автоматически выбрали native-модули.

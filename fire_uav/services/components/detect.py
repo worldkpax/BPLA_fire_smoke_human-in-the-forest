@@ -13,8 +13,8 @@ from numpy.typing import NDArray
 
 import fire_uav.infrastructure.providers as deps
 from fire_uav.config.settings import settings
-from fire_uav.core.schema import DetectionsBatch
 from fire_uav.domain.detect.detection import DetectionEngine
+from fire_uav.module_core.schema import DetectionsBatch
 from fire_uav.services.bus import Event, bus
 from fire_uav.services.components.base import ManagedComponent, State
 from fire_uav.services.metrics import detect_latency, fps_gauge, queue_size

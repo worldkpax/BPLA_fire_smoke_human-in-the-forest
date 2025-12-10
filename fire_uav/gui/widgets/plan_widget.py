@@ -88,6 +88,7 @@ class PlanWidget(QWidget):
             control_scale=False,
             zoom_control=True,
             prefer_canvas=True,
+            attributionControl=False,
         )
 
         Draw(
@@ -105,6 +106,16 @@ class PlanWidget(QWidget):
 
         if path:
             folium.PolyLine(path, color="red", weight=4).add_to(fmap)
+
+        fmap.get_root().header.add_child(
+            folium.Element(
+                """
+<style>
+.leaflet-control-attribution { display: none !important; }
+</style>
+"""
+            )
+        )
 
         fmap.save(self._tmp_html)
         self._view.setUrl(QUrl.fromLocalFile(str(self._tmp_html)))
@@ -152,7 +163,8 @@ class PlanWidget(QWidget):
   });
 
   const attr = document.querySelector('.leaflet-control-attribution');
-  if (attr) attr.style.display = 'none';
+  if (map.attributionControl) map.attributionControl.remove();
+  if (attr) attr.remove();
 })();"""
         self._view.page().runJavaScript(js)
 

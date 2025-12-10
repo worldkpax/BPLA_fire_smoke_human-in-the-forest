@@ -1,5 +1,10 @@
-from .aggregator import DetectionAggregator, DetectionEvent
-from .pipeline import DetectionBatchPayload, DetectionPipeline, RawDetectionPayload
+from fire_uav.module_core.detections import (
+    DetectionAggregator,
+    DetectionBatchPayload,
+    DetectionEvent,
+    DetectionPipeline,
+    RawDetectionPayload,
+)
 
 __all__ = [
     "DetectionAggregator",

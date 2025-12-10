@@ -1,0 +1,110 @@
+"""Engine-agnostic protocol models for UAV telemetry, routes, and objects."""
+
+from __future__ import annotations
+
+from datetime import datetime
+from typing import List, Literal, Union
+
+from pydantic import BaseModel
+
+from fire_uav.module_core.schema import GeoDetection, Route, TelemetrySample, Waypoint as CoreWaypoint
+
+
+class TelemetryMessage(BaseModel):
+    """Normalized telemetry update for external visualizers."""
+
+    type: Literal["telemetry"] = "telemetry"
+    uav_id: str
+    timestamp: datetime
+    lat: float
+    lon: float
+    alt: float
+    yaw: float
+    battery: float
+
+
+class Waypoint(BaseModel):
+    lat: float
+    lon: float
+    alt: float
+
+
+class RouteMessage(BaseModel):
+    """Route upload/visualization message."""
+
+    type: Literal["route"] = "route"
+    uav_id: str
+    version: int
+    waypoints: List[Waypoint]
+    active_index: int | None = None
+
+
+class ObjectMessage(BaseModel):
+    """Confirmed/known object report."""
+
+    type: Literal["object"] = "object"
+    uav_id: str
+    object_id: str
+    class_id: int
+    confidence: float
+    lat: float
+    lon: float
+    alt: float | None = None
+    status: str
+
+
+AnyMessage = Union[TelemetryMessage, RouteMessage, ObjectMessage]
+
+
+def make_telemetry(uav_id: str, sample: TelemetrySample) -> dict:
+    """Build a telemetry message dict from TelemetrySample."""
+    msg = TelemetryMessage(
+        uav_id=uav_id,
+        timestamp=sample.timestamp,
+        lat=sample.lat,
+        lon=sample.lon,
+        alt=sample.alt,
+        yaw=sample.yaw,
+        battery=sample.battery,
+    )
+    return msg.model_dump()
+
+
+def make_route(uav_id: str, route: Route) -> dict:
+    """Build a route message dict from Route."""
+    wps = [Waypoint(lat=wp.lat, lon=wp.lon, alt=wp.alt) for wp in route.waypoints]
+    msg = RouteMessage(
+        uav_id=uav_id,
+        version=route.version,
+        waypoints=wps,
+        active_index=route.active_index,
+    )
+    return msg.model_dump()
+
+
+def make_object(uav_id: str, obj: GeoDetection, status: str = "confirmed") -> dict:
+    """Build an object message dict from GeoDetection."""
+    msg = ObjectMessage(
+        uav_id=uav_id,
+        object_id=obj.object_id or (obj.frame_id or "unknown"),
+        class_id=obj.class_id,
+        confidence=obj.confidence,
+        lat=obj.lat,
+        lon=obj.lon,
+        alt=obj.alt,
+        status=status,
+    )
+    return msg.model_dump()
+
+
+__all__ = [
+    "TelemetryMessage",
+    "RouteMessage",
+    "ObjectMessage",
+    "AnyMessage",
+    "Waypoint",
+    "make_telemetry",
+    "make_route",
+    "make_object",
+]
+

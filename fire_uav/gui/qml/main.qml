@@ -21,6 +21,9 @@ ApplicationWindow {
     property color textMuted: "#aaaaaa"
     property int cardRadius: 18
     property int currentTab: 1
+    property bool toastVisible: false
+    property string toastTitle: "Notification"
+    property string toastMessage: ""
     Item {
         id: sceneLayer
         anchors.fill: parent
@@ -476,6 +479,129 @@ ApplicationWindow {
                     }
                 }
             }
+        }
+    }
+
+    // Detection notification capsule with quick navigation shortcuts
+    Item {
+        id: detectionToast
+        anchors.right: parent.right
+        anchors.rightMargin: 16
+        anchors.verticalCenter: navFloating.verticalCenter
+        width: navFloating.width
+        height: navFloating.height
+        visible: root.toastVisible
+        opacity: visible ? 1 : 0
+        z: 120
+
+        Behavior on opacity { NumberAnimation { duration: 180; easing.type: Easing.OutQuad } }
+
+        ShaderEffectSource {
+            id: toastSlice
+            anchors.fill: parent
+            sourceItem: sceneLayer
+            sourceRect: Qt.rect(detectionToast.x, detectionToast.y, detectionToast.width, detectionToast.height)
+            recursive: true
+            live: true
+            visible: false
+        }
+
+        FastBlur {
+            id: toastBlur
+            anchors.fill: parent
+            source: toastSlice
+            radius: 16
+            transparentBorder: true
+            z: -3
+        }
+
+        OpacityMask {
+            anchors.fill: parent
+            source: toastBlur
+            maskSource: Rectangle {
+                width: detectionToast.width
+                height: detectionToast.height
+                radius: height / 2
+            }
+            z: -2
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            radius: height / 2
+            color: Qt.rgba(0.08, 0.08, 0.08, 0.42)
+            border.color: Qt.rgba(1, 1, 1, 0.18)
+            border.width: 1
+            z: -1
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            radius: height / 2
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.12) }
+                GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.06) }
+            }
+            opacity: 0.26
+            Behavior on opacity { NumberAnimation { duration: 120; easing.type: Easing.OutQuad } }
+            z: -0.5
+        }
+
+        Column {
+            id: toastContent
+            anchors.left: parent.left
+            anchors.leftMargin: 12
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 2
+            width: detectionToast.width - 24
+
+            Text {
+                text: root.toastTitle
+                color: "#7bc6ff"
+                font.pixelSize: 13
+                font.family: "Inter"
+                font.weight: Font.Medium
+                elide: Text.ElideRight
+                maximumLineCount: 1
+                width: parent.width
+            }
+            Text {
+                text: root.toastMessage
+                color: textPrimary
+                font.pixelSize: 15
+                font.family: "Inter"
+                elide: Text.ElideRight
+                maximumLineCount: 1
+                width: parent.width
+            }
+        }
+    }
+
+    Timer {
+        id: toastHideTimer
+        interval: 6000
+        running: false
+        repeat: false
+        onTriggered: root.toastVisible = false
+    }
+
+    Connections {
+        target: app
+        function onToastRequested(message) {
+            root.toastTitle = "Notification"
+            root.toastMessage = message
+            root.toastVisible = true
+            toastHideTimer.restart()
+        }
+        function onObjectNotificationReceived(objectId, classId, confidence, message, trackId) {
+            root.toastTitle = "Detection"
+            var idLabel = objectId && objectId.length ? ("#" + objectId) : "n/a";
+            var clsLabel = classId >= 0 ? classId : "n/a";
+            var confLabel = confidence > 0 ? (confidence * 100).toFixed(1) + "%" : "n/a";
+            var trackLabel = (trackId !== null && trackId !== undefined) ? trackId : "n/a";
+            root.toastMessage = "Object: " + idLabel + " Track: " + trackLabel + " Class: " + clsLabel + " Conf: " + confLabel + "."
+            root.toastVisible = true
+            toastHideTimer.restart()
         }
     }
 

@@ -26,6 +26,7 @@ class Event(StrEnum):
     # детектор
     DETECTION = "detection"
     CONF_CHANGE = "conf_change"
+    OBJECT_CONFIRMED_UI = "object_confirmed_ui"
 
     # прочее можно добавлять по мере надобности
 
